@@ -1,31 +1,59 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.interfaces.ICategoriaService;
+import com.example.demo.interfaces.IClasificacionService;
+import com.example.demo.interfaces.IQuinielaJugadorService;
+import com.example.demo.interfaces.IQuinielaService;
 import com.example.demo.interfaces.IUsuarioService;
+import com.example.demo.model.Quiniela;
 import com.example.demo.model.Usuario;
+import com.example.demo.services.QuinielaService;
 
 @Controller
 public class Controlador {
 
-	@Autowired
-	private IUsuarioService usuariosservice;
 	
-	@RequestMapping("/")
-	public String index(HttpServletRequest req, HttpSession session) {
-		System.err.println("entra");
-		if(session.getAttribute("usuario")==null) {
-		boolean registrado=false;
-		session.setAttribute("registrado",registrado);
-		}
-		return "index";
+	//@Autowired
+	//private IClasificacionService clasificacionService;
+	
+	//@Autowired
+	//private IQuinielaJugadorService quinielaJugadorService;
+	
+	@Autowired
+	private IQuinielaService quinielaService;
+	
+	//@Autowired
+	//private ICategoriaService categoriaService;
+	
+	//@Autowired
+	//private IUsuarioService usuarioService;
+	
+	@RequestMapping("/prueba") //http://localhost:8080/   index se ejecutaria al meter esa url 
+	public ModelAndView inicio(HttpServletRequest req){
+		System.err.println("Entra en index.jsp");
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("index");
+		List<Quiniela> lista_ultima_quiniela = quinielaService.listarquinielas();
+		Quiniela ultima_quiniela = lista_ultima_quiniela.get(lista_ultima_quiniela.size());
+		int jornada = ultima_quiniela.getJornada();
+		lista_ultima_quiniela = quinielaService.listarPorJornadaYCategoria(jornada, 1);// TODO; de momento solo muestra la categoria 1
+		//listar por categoria aqui
+		//List<Categoria> categoria = categoriaservice.mostrarcategorias();
+		modelAndView.addObject("lista_ultima_quiniela", lista_ultima_quiniela);
+		return modelAndView; 
 	}
 	
+	/*
 	@RequestMapping("formulario")
 	public String intermedio(HttpServletRequest req) {
 		String mensaje="";
@@ -91,5 +119,5 @@ public class Controlador {
 			}
 		req.setAttribute("mensaje", mensaje);
 		return "iniciarusuario"; 
-	}
+	}*/
 }
