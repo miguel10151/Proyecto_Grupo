@@ -38,17 +38,34 @@ public class Controlador {
 	//@Autowired
 	//private IUsuarioService usuarioService;
 	
-	@RequestMapping("/prueba") //http://localhost:8080/   index se ejecutaria al meter esa url 
+	@RequestMapping("/") //http://localhost:8080/   index se ejecutaria al meter esa url 
 	public ModelAndView inicio(HttpServletRequest req){
 		System.err.println("Entra en index.jsp");
 		ModelAndView modelAndView=new ModelAndView();
 		modelAndView.setViewName("index");
 		List<Quiniela> lista_ultima_quiniela = quinielaService.listarquinielas();
-		Quiniela ultima_quiniela = lista_ultima_quiniela.get(lista_ultima_quiniela.size());
+		for(Quiniela q:lista_ultima_quiniela)
+		{
+			System.out.println(q.getId_quiniela());
+		}
+		//System.out.println(lista_ultima_quiniela);
+		Quiniela ultima_quiniela = lista_ultima_quiniela.get(lista_ultima_quiniela.size()-1);
+		System.out.println(ultima_quiniela.toString());
 		int jornada = ultima_quiniela.getJornada();
-		lista_ultima_quiniela = quinielaService.listarPorJornadaYCategoria(jornada, 1);// TODO; de momento solo muestra la categoria 1
-		//listar por categoria aqui
-		//List<Categoria> categoria = categoriaservice.mostrarcategorias();
+		System.out.println("jornada: " + jornada);
+		List<Quiniela> aux_lista=quinielaService.listarlistaPorCategoria(lista_ultima_quiniela, 1);
+		for(Quiniela q:aux_lista)
+		{
+			System.out.println(q.getId_quiniela());
+		}
+		//System.out.println(aux_lista);
+		lista_ultima_quiniela = quinielaService.listarlistaPorJornada(aux_lista, jornada);
+		for(Quiniela q:lista_ultima_quiniela)
+		{
+			System.out.println(q.getId_quiniela());
+		}
+		//System.out.println(lista_ultima_quiniela);
+		//lista_ultima_quiniela = quinielaService.listarPorJornadaYCategoria(jornada, 1);// TODO; de momento solo muestra la categoria 1
 		modelAndView.addObject("lista_ultima_quiniela", lista_ultima_quiniela);
 		return modelAndView; 
 	}

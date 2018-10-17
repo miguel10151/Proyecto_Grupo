@@ -26,22 +26,33 @@ public class QuinielaService implements IQuinielaService {
 		}
 		return quinielas;
 	}
-	
+
 	@Override
 	public List<Quiniela> listarPorCategoria(int id_categoria) {
-		List<Quiniela> quinielas=quinielaRepository.findbyIdCategoria(id_categoria);
+		List<Quiniela> quinielas=(List<Quiniela>)quinielaRepository.findbyIdCategoria(id_categoria).get();
 		return quinielas;
 	}
 	
 	@Override
 	public List<Quiniela> listarPorJornada(int jornada) {
-		List<Quiniela> quinielas=quinielaRepository.findbyJornada(jornada);
+		List<Quiniela> quinielas=quinielaRepository.findbyJornada(jornada).get();
 		return quinielas;
 	}
 	
+	public List<Quiniela> listarlistaPorJornada(List<Quiniela> lista, int id_categoria){
+		lista = quinielaRepository.findbyJornada(id_categoria).get();
+		return lista;
+	}
+	
+	public List<Quiniela> listarlistaPorCategoria(List<Quiniela> lista, int jornada){
+		lista = quinielaRepository.findbyIdCategoria(jornada).get();
+		return lista;
+	}
+	
+	/*
 	@Override
 	public List<Quiniela> listarPorJornadaYCategoria(int jornada, int categoria) {
-		List<Quiniela> quinielas=quinielaRepository.findbyIdCategoriaAndJornada(categoria, jornada);
+		List<Quiniela> quinielas=quinielaRepository.findbyIdCategoriaAndJornada(categoria, jornada).get();
 		return quinielas;
-	}
+	}*/
 }

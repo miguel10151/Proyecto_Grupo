@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
 	<c:forEach var="l" items="${lista_ultima_quiniela}">
 		
 		<tr>
-			<td>${l.id_quiniela}"> ${l.fecha_jornada}<br> ${l.resultado}<br> ${l.partido} <br> ${l.id_categoria} <br> ${l.jornada} <br> ${l.posibilidad} </td>
+			<td>${l.id_quiniela}<br> ${l.fecha_jornada}<br> ${l.resultado}<br> ${l.partido} <br> ${l.id_categoria} <br> ${l.jornada} <br> ${l.posibilidad} </td>
 		</tr>
 	</c:forEach>
 	</table>
