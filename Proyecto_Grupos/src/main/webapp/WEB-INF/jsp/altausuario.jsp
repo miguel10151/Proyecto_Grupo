@@ -37,7 +37,7 @@
         <a class="nav-link" href="formulario">Iniciar Sesion</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="formulario3">Añadir anuncio</a>
+        <a class="nav-link" href="formulario3">Añadir</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="formulario4">Mis anuncios</a>
