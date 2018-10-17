@@ -10,8 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<h1>hola</h1>
 	
+=======
+<h1>hola</h1>
+>>>>>>> branch 'master' of https://github.com/miguel10151/Proyecto_Grupo.git
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">3 Anuncios</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

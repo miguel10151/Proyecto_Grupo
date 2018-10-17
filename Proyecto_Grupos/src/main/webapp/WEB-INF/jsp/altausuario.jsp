@@ -37,7 +37,11 @@
         <a class="nav-link" href="formulario">Iniciar Sesion</a>
       </li>
       <li class="nav-item">
+<<<<<<< HEAD
         <a class="nav-link" href="formulario3">Añadir</a>
+=======
+        <a class="nav-link" href="formulario3">Añadir anuncio</a>
+>>>>>>> branch 'master' of https://github.com/miguel10151/Proyecto_Grupo.git
       </li>
       <li class="nav-item">
         <a class="nav-link" href="formulario4">Mis anuncios</a>
