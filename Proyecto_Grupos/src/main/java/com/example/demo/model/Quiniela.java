@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="quinielas")
-public class Quiniela {
+public class Quiniela implements Serializable{
 	@Id  //ponerselo al primary key
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_quiniela") //en teoria no hace falta en este caso si coincide el nombre

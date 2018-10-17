@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IQuinielaRepository;
+import com.example.demo.interfaces.IQuinielaService;
 import com.example.demo.model.Quiniela;
 
 @Service
-public class QuinielaService {
+public class QuinielaService implements IQuinielaService {
 
 	@Autowired
 	IQuinielaRepository quinielaRepository; //aqui estan todos los metodos del dao hechos
@@ -27,20 +28,20 @@ public class QuinielaService {
 	}
 	
 	@Override
-	public Optional<List<Quiniela>> listarPorCategoria(int id_categoria) {
-		Optional<List<Quiniela>> quinielas=quinielaRepository.findbyIdCategoria(id_categoria);
+	public List<Quiniela> listarPorCategoria(int id_categoria) {
+		List<Quiniela> quinielas=quinielaRepository.findbyIdCategoria(id_categoria);
 		return quinielas;
 	}
 	
 	@Override
-	public Optional<List<Quiniela>> listarPorJornada(int jornada) {
-		Optional<List<Quiniela>> quinielas=quinielaRepository.findbyJornada(jornada);
+	public List<Quiniela> listarPorJornada(int jornada) {
+		List<Quiniela> quinielas=quinielaRepository.findbyJornada(jornada);
 		return quinielas;
 	}
 	
 	@Override
-	public Optional<List<Quiniela>> listarPorJornadaYCategoria(int jornada, int categoria) {
-		Optional<List<Quiniela>> quinielas=quinielaRepository.findbyIdCategoriaAndJornada(categoria, jornada);
+	public List<Quiniela> listarPorJornadaYCategoria(int jornada, int categoria) {
+		List<Quiniela> quinielas=quinielaRepository.findbyIdCategoriaAndJornada(categoria, jornada);
 		return quinielas;
 	}
 }
