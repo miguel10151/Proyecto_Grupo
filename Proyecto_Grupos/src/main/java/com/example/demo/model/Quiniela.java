@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +11,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="quinielas")
-public class Quiniela {
+public class Quiniela implements Serializable{
 	@Id  //ponerselo al primary key
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_quiniela") //en teoria no hace falta en este caso si coincide el nombre
+	@Column(name="id_quinielas") //en teoria no hace falta en este caso si coincide el nombre
 	private int id_quiniela;
 	
 	@Column(name="id_categoria")
@@ -21,8 +23,14 @@ public class Quiniela {
 	@Column(name="jornada")
 	private int jornada;
 	
-	@Column(name="posibilidad")
-	private double posibilidad;
+	@Column(name="posibilidad_local")
+	private double posibilidad_local;
+	
+	@Column(name="posibilidad_empate")
+	private double posibilidad_empate;
+	
+	@Column(name="posibilidad_visitante")
+	private double posibilidad_visitante;
 	
 	@Column(name="fecha_jornada")
 	private String fecha_jornada;
@@ -57,12 +65,28 @@ public class Quiniela {
 		this.jornada = jornada;
 	}
 
-	public double getPosibilidad() {
-		return posibilidad;
+	public double getPosibilidad_local() {
+		return posibilidad_local;
 	}
 
-	public void setPosibilidad(double posibilidad) {
-		this.posibilidad = posibilidad;
+	public void setPosibilidad_local(double posibilidad_local) {
+		this.posibilidad_local = posibilidad_local;
+	}
+
+	public double getPosibilidad_empate() {
+		return posibilidad_empate;
+	}
+
+	public void setPosibilidad_empate(double posibilidad_empate) {
+		this.posibilidad_empate = posibilidad_empate;
+	}
+
+	public double getPosibilidad_visitante() {
+		return posibilidad_visitante;
+	}
+
+	public void setPosibilidad_visitante(double posibilidad_visitante) {
+		this.posibilidad_visitante = posibilidad_visitante;
 	}
 
 	public String getFecha_jornada() {

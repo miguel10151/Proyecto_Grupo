@@ -19,7 +19,7 @@ public class ClasificacionService implements IClasificacionService{
 	private IClasificacionRepository clasificacionRepository;
 	
 	@Override
-	public List<Clasificacion> listarUsuarios() {
+	public List<Clasificacion> listarClasificacion() {
 		List<Clasificacion> clasificacion =new ArrayList();
 		for(Clasificacion u: clasificacionRepository.findAll(new Sort(Sort.Direction.DESC, "puntos"))) {
 			//System.out.println(u.getUser()+",  "+ u.getPassword()+",  "+ u.getEmail());

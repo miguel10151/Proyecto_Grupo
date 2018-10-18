@@ -10,13 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-	<h1>hola</h1>
-	
-=======
 <h1>hola</h1>
->>>>>>> branch 'master' of https://github.com/miguel10151/Proyecto_Grupo.git
-prueba
+
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">3 Anuncios</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +50,13 @@ prueba
   </c:if>
   
 </nav>
-
+<table  border="2">
+<c:forEach var="l" items="${lista_ultima_quiniela}">
+		
+		<tr>
+			<td>${l.id_quiniela} ${l.fecha_jornada} ${l.resultado} ${l.partido}  ${l.id_categoria}  ${l.jornada} </td>
+		</tr>
+	</c:forEach>
+</table>
 </body>
 </html>
