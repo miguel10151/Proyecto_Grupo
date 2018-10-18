@@ -30,6 +30,17 @@ public class Clasificacion implements Serializable {
 
 	@Column(name="id_categoria")
 	private int id_categoria;
+	
+	@Column(name="jornada")
+	private int jornada;
+
+	public int getJornada() {
+		return jornada;
+	}
+
+	public void setJornada(int jornada) {
+		this.jornada = jornada;
+	}
 
 	public String getNick() {
 		return nick;

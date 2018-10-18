@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.interfaces.IClasificacionService;
 import com.example.demo.interfaces.IUsuarioService;
 import com.example.demo.model.Usuario;
 
@@ -15,6 +16,9 @@ public class Controlador {
 
 	@Autowired
 	private IUsuarioService usuariosservice;
+	
+	@Autowired
+	private IClasificacionService clasificacionservice;
 	
 	@RequestMapping("/")
 	public String index(HttpServletRequest req, HttpSession session) {
@@ -38,6 +42,22 @@ public class Controlador {
 		String mensaje="";
 		req.setAttribute("mensaje",mensaje );
 		return "altausuario";
+	}
+	
+	@RequestMapping("/clasificacion")
+	public String inicio(HttpServletRequest req) {
+		System.err.println("entra");
+		
+		req.setAttribute("lista",clasificacionservice.listarUsuarios());
+		return "clasificacion";
+	}
+	
+	@RequestMapping("/clasificacionCategoria")
+	public String clasificacioncategoria(HttpServletRequest req) {
+		System.err.println("entra");
+		
+		req.setAttribute("lista",clasificacionservice.listarClasificacionCategoria(1));
+		return "clasificacion";
 	}
 	
 	@RequestMapping("/altausuario")
