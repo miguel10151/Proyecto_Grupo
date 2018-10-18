@@ -28,7 +28,7 @@ public class Controlador {
 
 	
 	//@Autowired
-	//private IClasificacionService clasificacionService;
+	private IClasificacionService clasificacionService;
 	
 	//@Autowired
 	//private IQuinielaJugadorService quinielaJugadorService;
@@ -54,15 +54,12 @@ public class Controlador {
 	private IUsuarioService usuariosservice;
 	
 	@RequestMapping("/") //http://localhost:8080/   index se ejecutaria al meter esa url 
-	public ModelAndView inicio(HttpServletRequest req, HttpSession session){
+	public ModelAndView inicio(HttpServletRequest req ){
 		System.err.println("Entra en index.jsp");
-		if(session.getAttribute("usuario")==null) {
-			boolean registrado=false;
-			session.setAttribute("registrado",registrado);
-			}
 		ModelAndView modelAndView=new ModelAndView();
 		modelAndView.setViewName("index");
-		List<Quiniela> lista_ultima_quiniela = quinielaService.listarquinielas();
+		List<Quiniela> lista_ultima_quiniela = quinielaService.listarquinielas();//TODO:modular el sacar la lista
+		//por jornada y categoria. y otro para sacar la jornada segun la categoria
 		for(Quiniela q:lista_ultima_quiniela)
 		{
 			System.out.println(q.getId_quiniela());
@@ -90,6 +87,67 @@ public class Controlador {
 	}
 	
 	
+	@RequestMapping("clasificacioncategoria")
+	public ModelAndView clasificacioncategoria(HttpServletRequest req) {
+		System.err.println("Entra en clasifacioncategoria.jsp");
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("clasificacioncategoria");
+		modelAndView.addObject("lista_clasi__categoria", clasificacionService.listarClasificacionCategoria(Integer.parseInt(req.getParameter("categoria"))));
+		return modelAndView;//TODO:descomentar el add.object cuando este implementado el service, y testearlo 
+	}
+	
+	@RequestMapping("quinielacategoria")
+	public ModelAndView quinielacategoria(HttpServletRequest req) {
+		System.err.println("Entra en quinielacategoria.jsp");
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("quinielacategoria");
+		//modelAndView.addObject("lista_quiniela_categoria", quinielaService.listarPorCategoria(Integer.parseInt(req.getParameter("categoria")))); 
+		return modelAndView; //TODO:descomentar el add.object cuando este implementado el service, y testearlo 
+	}
+	
+	@RequestMapping("formularioquiniela")
+	public ModelAndView creandoquiniela(HttpServletRequest req) { //esta pagina solo se espera cuando se pulse el submit
+		System.err.println("Entra en formularioquiniela.jsp");
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("formularioquiniela");
+		String mensaje="";
+		//TODO:falta mostrar el formulario y almacenar jornada y id_categoria
+		int id_categoria = Integer.parseInt(req.getParameter("id_categoria"));//TODO:mirar que se pase por el jsp
+		//TODO:aqui buscar
+		
+		
+		req.setAttribute("id_categoria",id_categoria );
+		//req.setAttribute("jornada",jornada ); almacenar aqui la ultima jornada. supongo que lo mejor es
+		// hacer un metodo que haga exclusivamente eso
+		req.setAttribute("mensaje",mensaje );//TODO:falta meter en mensaje en "comprobarcreacionquiniela"
+		return modelAndView;
+	}
+	
+	@RequestMapping("comprobarcreacionquiniela")
+	public ModelAndView comprobarcreacionquiniela(HttpServletRequest req, HttpSession session) { //esta pagina solo se espera cuando se pulse el submit
+		System.err.println("Entra en comprobarcreacionquiniela.jsp");
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("formularioquiniela");
+		String mensaje="";
+		//comprobar la quiniela, meter datos a quinielausuario y actualizar mensaje
+		
+		session.getAttribute("user");
+		String nick = (String) session.getAttribute("user");;
+		int resultado = Integer.parseInt(req.getParameter("resultado"));
+		
+		//int jornada = Integer.parseInt(req.getParameter("jornada")); //TODO:cambiar a ultima jornada
+		int id_categoria = Integer.parseInt(req.getParameter("id_categoria"));
+		//QuinielaJugador quiniela_jugador = new QuinielaJugador(nick, resultado, jornada, id_categoria);/TODO:falta
+		//la jornada. por el metodo de formularioquiniela.
+		
+		
+		//quinielaJugadorService.añadirQuinielaJugador(quiniela_jugador);//TODO descomentar el constructor de arriba
+		//comentado, cuando funcione
+		mensaje = "Quiniela finalizada correctamente"; //TODO:correo a modo de recibo como que ha comprado la quiniela?
+		req.setAttribute("mensaje",mensaje );//TODO:comprobacion de si se mete correctamente? ifs
+		return modelAndView;
+	}
+	//Copio de controlador
 	@RequestMapping("formulario")
 	public String intermedio(HttpServletRequest req) {
 		String mensaje="";
@@ -112,13 +170,6 @@ public class Controlador {
 		return "clasificacion";
 	}
 	
-	@RequestMapping("/clasificacionCategoria")
-	public String clasificacioncategoria(HttpServletRequest req) {
-		System.err.println("entra");
-		
-		req.setAttribute("lista",clasificacionservice.listarClasificacionCategoria(1));
-		return "clasificacion";
-	}
 	
 	@RequestMapping("/altausuario")
 	public String alta(HttpServletRequest req) {
@@ -160,10 +211,10 @@ public class Controlador {
 		}else {
 			
 			if(usuariosservice.chechkbyid(user)&&passver.equals(password)) {
-				boolean registrado=true;
+			
 				session.setAttribute("usuario", user);
-				session.setAttribute("registrado", registrado);
-				return inicio(req, session);
+			
+				return inicio(req);
 			}else {
 				mensaje="no existe este usuario";
 			}

@@ -10,7 +10,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">3 Anuncios</a>
+  <a class="navbar-brand" href="#">Menu</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -38,10 +38,14 @@
       </li>
       <li class="nav-item">
 <<<<<<< HEAD
+        <a class="nav-link" href="formulario3">Añadir Anuncio</a>
+=======
+<<<<<<< HEAD
         <a class="nav-link" href="formulario3">Añadir</a>
 =======
         <a class="nav-link" href="formulario3">Añadir anuncio</a>
 >>>>>>> branch 'master' of https://github.com/miguel10151/Proyecto_Grupo.git
+>>>>>>> efa258db6a836dbd1207e88ad748a4d0c9b20582
       </li>
       <li class="nav-item">
         <a class="nav-link" href="formulario4">Mis anuncios</a>

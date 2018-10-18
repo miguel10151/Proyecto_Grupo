@@ -34,9 +34,11 @@ public class QuinielaService implements IQuinielaService {
 	}
 	
 	@Override
-	public List<Quiniela> listarPorJornada(int jornada) {
-		List<Quiniela> quinielas=quinielaRepository.findbyJornada(jornada).get();
-		return quinielas;
+	public int listarPorJornada() {
+		List<Quiniela> quinielas=(List<Quiniela>) quinielaRepository.findAll();
+		Quiniela ultimaquiniela=quinielas.get((quinielas.size()-1));
+		int jornada=ultimaquiniela.getJornada();
+		return jornada;
 	}
 	
 	public List<Quiniela> listarlistaPorJornada(List<Quiniela> lista, int id_categoria){
