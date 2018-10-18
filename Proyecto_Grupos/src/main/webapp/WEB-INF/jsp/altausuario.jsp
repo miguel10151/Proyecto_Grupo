@@ -10,7 +10,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">3 Anuncios</a>
+  <a class="navbar-brand" href="#">Menu</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -37,7 +37,7 @@
         <a class="nav-link" href="formulario">Iniciar Sesion</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="formulario3">Añadir</a>
+        <a class="nav-link" href="formulario3">Añadir Anuncio</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="formulario4">Mis anuncios</a>
